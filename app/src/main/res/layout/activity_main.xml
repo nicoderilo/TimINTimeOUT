@@ -9,6 +9,14 @@
 
     <TextView
         android:id="@+id/current_time_view"
+        android:hint="current time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="26sp" />
+    <TextView
+        android:id="@+id/tvDuration"
+        android:hint="duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
@@ -46,7 +54,7 @@
         android:layout_marginTop="50dp"
         android:onClick="getCurrentTime"
         android:text="Timeout" />
-
+    <!--        android:format12Hour="hh:mm:ss a"-->
     <TextClock
         android:id="@+id/textClock1"
         android:layout_width="fill_parent"
@@ -56,14 +64,6 @@
         android:textColor="#d41709"
         android:textSize="20sp"
         android:textStyle="bold" />
-    <TextClock
-        android:id="@+id/textClock2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:format12Hour="hh:mm:ss a"
-        android:gravity="center_horizontal"
-        android:textColor="#d41709"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+
 
 </LinearLayout>
