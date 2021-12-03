@@ -1,3 +1,4 @@
+//if statement in OK button 12:57 am Dec3
 package com.example.timintimeout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,9 +18,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
-    EditText etStart, etEnd;
-    Button btnDuration, btnTimeOut;
-    TextClock textClock1, textClock2;
+    EditText etStart, etEnd,etTimeMode;
+    Button btnDuration, btnTimeOut,btnOk,btnErase,btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9;
+    TextClock textClock1, textClockDate;
     TextView current_time_view,tvDuration;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +34,31 @@ public class MainActivity extends AppCompatActivity {
         tvDuration = findViewById(R.id.tvDuration);
         etStart = findViewById(R.id.etStart);
         etEnd = findViewById(R.id.etEnd);
+        etTimeMode = findViewById(R.id.etTimeMode);
         btnDuration = findViewById(R.id.btnDuration);
         btnTimeOut = findViewById(R.id.btnTimeOut);
-        textClock1 = findViewById(R.id.textClock1);
-        //textClock2 = findViewById(R.id.textClock2);
+        btnOk = findViewById(R.id.btnOk);
+        btnErase = findViewById(R.id.btnErase);
+        btn0 = findViewById(R.id.btn0);
+        btn1 = findViewById(R.id.btn1);
+        btn2 = findViewById(R.id.btn2);
+        btn3 = findViewById(R.id.btn3);
+        btn4 = findViewById(R.id.btn4);
+        btn5 = findViewById(R.id.btn5);
+        btn6 = findViewById(R.id.btn6);
+        btn7 = findViewById(R.id.btn7);
+        btn8 = findViewById(R.id.btn8);
+        btn9 = findViewById(R.id.btn9);
 
-//        etStart.setText(start);
+        textClock1 = findViewById(R.id.textClock1);
+        textClockDate = findViewById(R.id.textClockDate);
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm:ss");
+        //SimpleDateFormat mdformat = new SimpleDateFormat("EEE-MMM-d \n HH:mm:ss");
+        //String strDate = "Current Time : " + mdformat.format(calendar.getTime());
+        String strDate = mdformat.format(calendar.getTime());
+        display(strDate);
 
         btnTimeOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,48 +76,47 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        btnDuration.setOnClickListener(new View.OnClickListener() {
+        //btnDuration.
+        btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            //String startTime = etStart.getText().toString();
-            //String endTime =etEnd.getText().toString();
-           // Duration timeElapsed = Duration.between(etEnd.getText(), etStart.getText());
-                //Integer timeElapsed = Integer.parseInt(etEnd.getText())  - etStart.getText();
-                //Duration timeElapsed = Duration.between(etEnd.getText(), etStart.getText());
+                if (etTimeMode.getText().toString() == "TimeIN") {
+                  //save or insert start time, date,emp name,emp code,hours,minutes
+                    tvDuration.setText("test");
 
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-                try {
-                    Date time1 = simpleDateFormat.parse(etStart.getText().toString());
-                    Date time2 = simpleDateFormat.parse(etEnd.getText().toString());
+                } else {
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+                    try {
+                        Date time1 = simpleDateFormat.parse(etStart.getText().toString());
+                        Date time2 = simpleDateFormat.parse(etEnd.getText().toString());
 
-
-
-                    // Calculating the difference in milliseconds
-                    long differenceInMilliSeconds = Math.abs(time2.getTime() - time1.getTime());
-                    // Calculating the difference in Hours
-                    long differenceInHours = (differenceInMilliSeconds / (60 * 60 * 1000)) % 24;
-                    System.out.println(differenceInHours);
-                    System.out.println(differenceInMilliSeconds);
-                    tvDuration.setText(differenceInHours + "");
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                        // Calculating the difference in milliseconds
+                        long differenceInMilliSeconds = Math.abs(time2.getTime() - time1.getTime());
+                        // Calculating the difference in Hours
+                        long differenceInHours = (differenceInMilliSeconds / (60 * 60 * 1000)) % 24;
+                        System.out.println(differenceInHours);
+                        System.out.println(differenceInMilliSeconds);
+                        tvDuration.setText(differenceInHours + "");
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
 
-            }
+
+            } //BtnOk - end
         });
     }
 
-    public void getCurrentTime(View view) {
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm:ss");
-        //SimpleDateFormat mdformat = new SimpleDateFormat("EEE-MMM-d \n HH:mm:ss");
-        //String strDate = "Current Time : " + mdformat.format(calendar.getTime());
-        String strDate = mdformat.format(calendar.getTime());
-        display(strDate);
-
-
-    }
+//    public void getCurrentTime(View view) {
+//        Calendar calendar = Calendar.getInstance();
+//        SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm:ss");
+//        //SimpleDateFormat mdformat = new SimpleDateFormat("EEE-MMM-d \n HH:mm:ss");
+//        //String strDate = "Current Time : " + mdformat.format(calendar.getTime());
+//        String strDate = mdformat.format(calendar.getTime());
+//        display(strDate);
+//
+//
+//    }
 
     private void display(String num) {
         TextView textView = (TextView) findViewById(R.id.current_time_view);

@@ -6,6 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical">
+    <TextClock
+        android:id="@+id/textClockDate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:format12Hour="dd-MM-yyyy"
+        android:gravity="center_horizontal"
+        android:textColor="#d41709"
+        android:textSize="29sp"
+        android:hint="Jan 1, 2022"
+        android:textStyle="bold" />
+
+    <TextClock
+        android:id="@+id/textClock1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:format12Hour="hh:mm:ss a"
+        android:gravity="center_horizontal"
+        android:textColor="#d41709"
+        android:textSize="20sp"
+        android:hint="12:00:00 PM"
+        android:textStyle="bold" />
+
 
     <TextView
         android:id="@+id/current_time_view"
@@ -22,13 +44,13 @@
         android:text=""
         android:textSize="26sp" />
 
-    <Button
-        android:id="@+id/get_current_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:onClick="getCurrentTime"
-        android:text="Get Current Time" />
+<!--    <Button-->
+<!--        android:id="@+id/get_current_time"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:onClick="getCurrentTime"-->
+<!--        android:text="Get Current Time" />-->
     <EditText
         android:id="@+id/etStart"
         android:layout_width="match_parent"
@@ -38,32 +60,135 @@
         android:id="@+id/etEnd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="start"/>
+        android:hint="end"/>
 
-    <Button
-        android:id="@+id/btnDuration"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="153dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnDuration"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Duration" />
+
+        <Button
+            android:id="@+id/btnTimeOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Timeout" />
+    </LinearLayout>
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:useDefaultMargins="true">
+
+
+        <Button
+            android:id="@+id/btn7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7"
+            app:layout_column="1"
+            app:layout_row="0" />
+
+        <Button
+            android:id="@+id/btn8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8" />
+
+        <Button
+            android:id="@+id/btn9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9" />
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            app:layout_column="1"
+            app:layout_row="1" />
+
+        <Button
+            android:id="@+id/btn5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5" />
+
+        <Button
+            android:id="@+id/btn6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6"
+            app:layout_column="3"
+            app:layout_row="1" />
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            app:layout_column="1"
+            app:layout_row="2" />
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            app:layout_column="2"
+            app:layout_row="2" />
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            app:layout_column="3"
+            app:layout_row="2" />
+
+        <Button
+            android:id="@+id/btnOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            app:layout_column="1"
+            app:layout_row="3" />
+
+        <Button
+            android:id="@+id/btn0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_column="2"
+            app:layout_row="3" />
+
+        <Button
+            android:id="@+id/btnErase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="erase"
+            app:layout_column="3"
+            app:layout_row="3" />
+
+    </androidx.gridlayout.widget.GridLayout>
+    <EditText
+        android:id="@+id/etTimeMode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:onClick="getCurrentTime"
-        android:text="Duration" />
-    <Button
-        android:id="@+id/btnTimeOut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:onClick="getCurrentTime"
-        android:text="Timeout" />
+        android:textSize="26sp"
+        android:textAlignment="center"
+        android:text="Time IN"/>
     <!--        android:format12Hour="hh:mm:ss a"-->
-    <TextClock
-        android:id="@+id/textClock1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:format12Hour="hh:mm:ss a"
-        android:gravity="center_horizontal"
-        android:textColor="#d41709"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+
 
 
 </LinearLayout>
