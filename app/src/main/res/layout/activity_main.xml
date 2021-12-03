@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/current_time_view"
@@ -20,5 +21,49 @@
         android:layout_marginTop="50dp"
         android:onClick="getCurrentTime"
         android:text="Get Current Time" />
+    <EditText
+        android:id="@+id/etStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="start"/>
+    <EditText
+        android:id="@+id/etEnd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="start"/>
+
+    <Button
+        android:id="@+id/btnDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:onClick="getCurrentTime"
+        android:text="Duration" />
+    <Button
+        android:id="@+id/btnTimeOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:onClick="getCurrentTime"
+        android:text="Timeout" />
+
+    <TextClock
+        android:id="@+id/textClock1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:format12Hour="hh:mm:ss a"
+        android:gravity="center_horizontal"
+        android:textColor="#d41709"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <TextClock
+        android:id="@+id/textClock2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:format12Hour="hh:mm:ss a"
+        android:gravity="center_horizontal"
+        android:textColor="#d41709"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </LinearLayout>
