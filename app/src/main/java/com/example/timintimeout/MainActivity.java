@@ -27,6 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void display(String num) {
         TextView textView = (TextView) findViewById(R.id.current_time_view);
-        textView.setText(num);
+        textView.setText(num);//
     }
 }
