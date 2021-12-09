@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TimeInOutActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextClock
+                android:id="@+id/tcDate"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:format12Hour="dd-MM-yyyy"
+                android:gravity="center_horizontal"
+                android:textColor="#d41709"
+                android:textSize="20sp"
+                android:hint="Jan 1, 2022"
+                android:textStyle="bold" />
+
+            <TextClock
+                android:id="@+id/tcTime"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:format12Hour="hh:mm:ss a"
+                android:gravity="center_horizontal"
+                android:textColor="#d41709"
+                android:textSize="33sp"
+                android:hint="12:00:00 PM"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnTimeIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Time In" />
+
+                <Button
+                    android:id="@+id/btnTimeOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Time Out" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

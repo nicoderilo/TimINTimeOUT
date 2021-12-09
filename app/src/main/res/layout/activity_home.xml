@@ -40,7 +40,7 @@
                 android:padding="16dp">
 
                 <ImageView
-                    android:id="@+id/ivPackages"
+                    android:id="@+id/ivTimeInOut"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@drawable/timeinout" />
@@ -77,7 +77,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/ivBookings"
+                    android:id="@+id/ivSchedule"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@drawable/schedule" />
@@ -115,7 +115,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/ivProfile"
+                    android:id="@+id/ivEmployee"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@drawable/employee" />
@@ -153,7 +153,7 @@
 
 
                 <ImageView
-                    android:id="@+id/ivContactUs"
+                    android:id="@+id/ivReports"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@drawable/report" />

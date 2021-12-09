@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     EditText etStart, etEnd, etEmpCode,etEmpCode2,etEmpCode3,etEmpCode4;
     Button btnDuration, btnTimeOut,btnOk,btnErase,btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9;
     TextClock textClock1, textClockDate;
-    TextView current_time_view,tvDuration,tvTimeMode;
+    public TextView current_time_view,tvDuration,tvTimeMode;
     private Handler mHandler = new Handler();//for my timer
 
     @Override
@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
         myTime.run(); //military time
 
+        String TimeMode = getIntent().getExtras().getString("mode");
+        tvTimeMode.setText(TimeMode);
 
         //----------------------------------------------------------------------------------------------------
         btnTimeOut.setOnClickListener(new View.OnClickListener() {
