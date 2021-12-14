@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
                 etEnd.setText(endTime);
 //            Duration timeElapsed = Duration.between(endTime, startTime);
                 //--------------------------------------
-             //String startTime =  current_time_view.getText().toString();
-             //String endTime = current_time_view.getText().toString();
+                //String startTime =  current_time_view.getText().toString();
+                //String endTime = current_time_view.getText().toString();
 
 
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-        //save or insert start time, date,emp name,emp code,hours,minutes
+                //save or insert start time, date,emp name,emp code,hours,minutes
 
                 if (tvTimeMode.getText().equals("Time IN")) {
 
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
         //String empCode1 = etEmpCode1.getText().toString();
-       // String empCode2 = etEmpCode2.getText().toString();
+        // String empCode2 = etEmpCode2.getText().toString();
 //        String empCode3 = etEmpCode3.getText().toString();
 //        String empCode4 = etEmpCode4.getText().toString();
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -220,11 +220,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
             Calendar calendar = Calendar.getInstance();
-       SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm:ss");
+            SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm:ss");
 //        //SimpleDateFormat mdformat = new SimpleDateFormat("EEE-MMM-d \n HH:mm:ss");
 //        //String strDate = "Current Time : " + mdformat.format(calendar.getTime());
-       String strDate = mdformat.format(calendar.getTime());
-        display(strDate);
+            String strDate = mdformat.format(calendar.getTime());
+            display(strDate);
             mHandler.postDelayed(this, 1000);
         }
     };
