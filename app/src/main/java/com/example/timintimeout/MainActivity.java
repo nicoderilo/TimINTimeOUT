@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
         //String empCode1 = etEmpCode1.getText().toString();
         // String empCode2 = etEmpCode2.getText().toString();
 //        String empCode3 = etEmpCode3.getText().toString();
-//        String empCode4 = etEmpCode4.getText().toString();
+//        String empCode4 = etEmpCode4.getText().toString();//
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

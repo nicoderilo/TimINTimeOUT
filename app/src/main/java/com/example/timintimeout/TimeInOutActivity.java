@@ -12,7 +12,7 @@ public class TimeInOutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide(); //this will hide the title of my proj
+        getSupportActionBar().hide(); //this will hide the title of my proj.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_in_out);
 

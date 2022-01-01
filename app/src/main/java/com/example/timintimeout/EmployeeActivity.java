@@ -158,7 +158,7 @@ public class EmployeeActivity extends AppCompatActivity {
 //    }
 
 
-    @SuppressLint("NewApi")
+    @SuppressLint("NewApi")//
     public Connection connectionClass(){
         Connection con = null;
         String ip="10.0.0.106", port="50379", username="sa",password="01Password", databasename="timetrack";
