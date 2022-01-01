@@ -24,6 +24,7 @@ public class TimeInOutActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(TimeInOutActivity.this, MainActivity.class);
                 intent.putExtra("mode", "Time IN");
+                //intent.putExtra("startTime", );
                 startActivity(intent);
 
 
