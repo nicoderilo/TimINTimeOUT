@@ -15,7 +15,7 @@
         android:id="@+id/textClockDate"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:format12Hour="yyyy-mm-dd"
+        android:format12Hour="yyyy-MM-dd"
         android:gravity="center_horizontal"
         android:textColor="#d41709"
         android:textSize="20sp"
@@ -75,8 +75,7 @@
     <EditText
         android:id="@+id/etStart"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="start"/>
+        android:layout_height="wrap_content"/>
     <EditText
         android:id="@+id/etEnd"
         android:layout_width="match_parent"
@@ -135,12 +134,12 @@
         android:layout_height="153dp"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnDuration"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Duration" />
+<!--        <Button-->
+<!--            android:id="@+id/btnDuration"-->
+<!--            android:layout_width="210dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:text="Duration" />-->
 
         <Button
             android:id="@+id/btnTimeOut"

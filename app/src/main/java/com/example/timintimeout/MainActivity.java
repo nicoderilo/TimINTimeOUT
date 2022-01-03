@@ -18,6 +18,7 @@ import android.widget.Toast;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -31,7 +32,7 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     EditText etStart, etEnd, etEmpCode,etEmpCode2,etEmpCode3,etEmpCode4;
-    Button btnDuration, btnTimeOut,btnOk,btnErase,btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9;
+    Button btnTimeOut,btnOk,btnErase,btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9;
     TextClock textClock1, textClockDate;
     public TextView current_time_view,tvDuration,tvTimeMode,tvempName,tvTest;
     private Handler mHandler = new Handler();//for my timer
@@ -53,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         tvTimeMode = findViewById(R.id.tvTimeMode);
         tvempName = findViewById(R.id.tvempName);
         tvTest = findViewById(R.id.tvTest);
-        btnDuration = findViewById(R.id.btnDuration);
         btnTimeOut = findViewById(R.id.btnTimeOut);
         btnOk = findViewById(R.id.btnOk);
         btnErase = findViewById(R.id.btnErase);
@@ -86,70 +86,60 @@ public class MainActivity extends AppCompatActivity {
                 String endTime = current_time_view.getText().toString();
                 etStart.setText(startTime);
                 etEnd.setText(endTime);
-//            Duration timeElapsed = Duration.between(endTime, startTime);
-//                --------------------------------------
-//                String startTime =  current_time_view.getText().toString();
-//                String endTime = current_time_view.getText().toString();
-
-
-
             }
         });
-        //btnDuration.
+
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //save or insert start time, date,emp name,emp code,hours,minutes
+                //TASK: save or insert start time, date,emp name,emp code,hours,minutes
                // this code will identify customer's user name tru empUser
 
-                //String testtoast = textClockDate.getText().toString();
-               // Toast.makeText(getApplicationContext(), testtoast, Toast.LENGTH_LONG).show();
-//                Connection connection = connectionClass();
-//                String sqlId = "SELECT timeId FROM timeSummary WHERE empUser = '"+ etEmpCode.getText().toString() +" and date ="+ textClockDate.getText().toString() +"'";
-//                Statement st = connection.createStatement();
-//                ResultSet rs = st.executeQuery(sqlGet);
 
-                //display timesummary id
+                //DISPLAY timesummary id - START
                 Connection connection = connectionClass();
                 try {
                     if (connection !=null){
-                       // String sqlGet ="SELECT * FROM employee WHERE empUser = '"+ etEmpCode.getText().toString() +"'";
-                       // String sqlId = "SELECT * FROM timeSummary WHERE empUser = '"+ etEmpCode.getText().toString() +" and date ='"+ textClockDate.getText().toString() +"'";
-                        String sqlDate = "SELECT convert(varchar,'2021-10-17',105)";
-//                        String sqlDate = "SELECT convert(varchar,'"+ textClockDate.getText().toString() +"',105)";
-                                        //SELECT * from timesummary where empUser = 2892 and date = '2021-10-17'
-                        Statement st = connection.createStatement();
-                       // ResultSet rs = st.executeQuery(sqlGet);
-                        ResultSet rs = st.executeQuery(sqlDate);
-                       // tvTest.setText(sqlDate);
-                        while(rs.next()){
-                           // tvempName.setText(rs.getString(3));
-                            tvTest.setText(rs.getString(1));
 
-                        }
+                        Toast.makeText(getApplicationContext(), "connected to server", Toast.LENGTH_LONG).show();
                     } else if (connection ==null){
                     Toast.makeText(getApplicationContext(), "Not connected to server", Toast.LENGTH_LONG).show();
                 }
                 }  catch (Exception exception){
                     Log.e("Error",exception.getMessage());
-                } // //display timesummary id end
+                } //DISPLAY timesummary id - END
 
 
 
-                //this code will get the time and display in edit text-------------------------
+                //this code will get the time and display in edit text - START
                 if (tvTimeMode.getText().equals("Time IN")) {
-                    //String startTime = current_time_view.getText().toString();
-                   // etStart.setText(startTime);
+                    Toast.makeText(getApplicationContext(), "Time in", Toast.LENGTH_LONG).show();
                     try {
                         if (connection !=null){
-                            String sqlGetById ="SELECT * FROM timeSummary WHERE empUser = '"+ etEmpCode.getText().toString() +"'";
+
+                            String sqlGetByCodeAndDate ="SELECT * FROM timeSummary WHERE empUser = '"+ etEmpCode.getText().toString() +"' and date = '"+ textClockDate.getText().toString() +"'";
+                           // String sqlGetByCodeAndDate ="SELECT * FROM timeSummary WHERE empUser = '"+ etEmpCode.getText().toString() +"' and date = '2022-01-02'";
+
                             Statement st = connection.createStatement();
-                            ResultSet rs = st.executeQuery(sqlGetById);
+                            ResultSet rs = st.executeQuery(sqlGetByCodeAndDate);
 
                             while(rs.next()){
-                                etStart.setText(rs.getString(4));
-                                //address.setText(rs.getString(3));
+                                etStart.setText(rs.getString(4)); //get timeIn column value if availble
+                                tvempName.setText(rs.getString(3)); //get empFName column value if availble
+
                             }
+
+                            //save startTime - if no timeIn yet or null - START
+                            String Time_IN_Value = etStart.getText().toString();
+                            if (Time_IN_Value.equals("")) {
+
+                                etStart.setText(current_time_view.getText().toString());
+                                        String sqlinsert ="INSERT INTO timeSummary ([empUser],[empFName],[startTime],[endTime],[duration],[date]) VALUES ('"+ etEmpCode.getText().toString() +"','"+tvempName.getText().toString()+"','"+etStart.getText().toString()+"','"+etEnd.getText().toString()+"','"+tvDuration.getText().toString()+"','"+ textClockDate.getText().toString()+"')";
+                                        Toast.makeText(getApplicationContext(), "Added Successful", Toast.LENGTH_LONG).show();
+                                        st.executeQuery(sqlinsert);
+                            }//save startTime - END
+
+
                         } else if (connection ==null){
                             Toast.makeText(getApplicationContext(), "Not connected to server", Toast.LENGTH_LONG).show();
                         }
@@ -159,23 +149,26 @@ public class MainActivity extends AppCompatActivity {
                 } else if (tvTimeMode.getText().equals("Time OUT")) {
                     String endTime = current_time_view.getText().toString();
                     etEnd.setText(endTime);
-                }//end
-
-                //----------------------
-                if (tvTimeMode.getText().equals("Time IN")) {
-
-                   // tvDuration.setText("Time IN");
-                    Toast.makeText(getApplicationContext(), "Time in", Toast.LENGTH_LONG).show();
-
-                } else if (tvTimeMode.getText().equals("Time OUT")){
-
-
-                    //tvDuration.setText("Time OUT");
                     Toast.makeText(getApplicationContext(), "Time OUT", Toast.LENGTH_LONG).show();
-
-
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
                     try {
+
+                        try {
+                            //get the value of user with timeIN and display it with name - START
+                            String sqlGetByCodeAndDate = "SELECT * FROM timeSummary WHERE empUser = '" + etEmpCode.getText().toString() + "' and date = '" + textClockDate.getText().toString() + "'";
+                            Statement st = connection.createStatement();
+                            ResultSet rs = st.executeQuery(sqlGetByCodeAndDate);
+
+                            while (rs.next()) {
+                                etStart.setText(rs.getString(4)); //get timeIn column value if availble
+                                tvempName.setText(rs.getString(3)); //get empFName column value if availble
+                                 }
+                            } catch(SQLException e){
+                                e.printStackTrace();
+                            }
+                        //get the value of user with timeIN and display it with name - END
+
+                        //computation of Duration - START
                         Date time1 = simpleDateFormat.parse(etStart.getText().toString());
                         Date time2 = simpleDateFormat.parse(etEnd.getText().toString());
 
@@ -186,29 +179,19 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println(differenceInHours);
                         System.out.println(differenceInMilliSeconds);
                         tvDuration.setText(differenceInHours + "");
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), "if statement not working", Toast.LENGTH_LONG).show();
-                }
-                //save startTime
-                try {
-                    if (connection !=null){
-                        String sqlinsert ="INSERT INTO timeSummary ([empUser],[empFName],[startTime],[endTime],[duration],[date]) VALUES ('"+ etEmpCode.getText().toString() +"','"+tvempName.getText().toString()+"','"+etStart.getText().toString()+"','"+etEnd.getText().toString()+"','"+tvDuration.getText().toString()+"','"+ textClockDate.getText().toString()+"')";
+                        //computation of Duration - END
+
+                        //update table for timeOut using empcode and date
+                        String sqlinsert ="UPDATE timeSummary SET endTime ='"+ etEnd.getText().toString() +"',duration='"+tvDuration.getText().toString()+"' WHERE empUser = '"+ etEmpCode.getText().toString() +"' and date = '"+ textClockDate.getText().toString() +"'";
                         Toast.makeText(getApplicationContext(), "Added Successful", Toast.LENGTH_LONG).show();
                         Statement st = connection.createStatement();
-                        ResultSet rs = st.executeQuery(sqlinsert);
-
-
-
-                    } else if (connection ==null){
-                        Toast.makeText(getApplicationContext(), "Not connected to server", Toast.LENGTH_LONG).show();
+                        st.executeQuery(sqlinsert);
+                    } catch (ParseException | SQLException e) {
+                        e.printStackTrace();
                     }
-                }  catch (Exception exception){
-                    Log.e("Error",exception.getMessage());
 
-                } ////save startTime end
+                } //this code will get the time and display in edit text - END
+
 
             } //BtnOk - end
 
@@ -232,21 +215,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
-        //String empCode1 = etEmpCode1.getText().toString();
-        // String empCode2 = etEmpCode2.getText().toString();
-//        String empCode3 = etEmpCode3.getText().toString();
-//        String empCode4 = etEmpCode4.getText().toString();//
+
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //etEmpCode1.setText("1");
-
                 etEmpCode.setText(etEmpCode.getText().toString() + "1");
-//                if (etEmpCode1.getText().toString().equals("-")) {
-//                    etEmpCode1.setText("1");
-//                } else if (etEmpCode1.getText().toString().equals("1")) {
-//                    etEmpCode2.setText("1");
-//                }
             }
         });
 
@@ -327,11 +300,17 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             Calendar calendar = Calendar.getInstance();
             SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm:ss");
-//        //SimpleDateFormat mdformat = new SimpleDateFormat("EEE-MMM-d \n HH:mm:ss");
-//        //String strDate = "Current Time : " + mdformat.format(calendar.getTime());
             String strDate = mdformat.format(calendar.getTime());
             display(strDate);
             mHandler.postDelayed(this, 1000);
         }
+
     };
+
+    public static boolean isEmpty(CharSequence str) {
+        if (str == null || str.length() == 0)
+            return true;
+        else
+            return false;
+    }
 }
