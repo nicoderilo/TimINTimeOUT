@@ -8,10 +8,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectionClass {
+public class ConnectionHelperOLD {
     String classs = "com.mysql.jdbc.Driver";
 
-    String url = "jdbc:mysql://10.0.0.118/timetrack";
+    String url = "jdbc:mysql://10.0.0.106/timetrack";
     String un = "rocs";
     String password = "rocspassword";
 

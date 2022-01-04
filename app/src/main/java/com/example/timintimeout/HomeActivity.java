@@ -36,5 +36,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        ivReports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, ReportActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

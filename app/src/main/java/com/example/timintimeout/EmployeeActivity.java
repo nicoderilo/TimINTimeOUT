@@ -22,9 +22,11 @@ import java.sql.Statement;
 public class EmployeeActivity extends AppCompatActivity {
     EditText etEmpId,etFirstName,etLastName,etBirthdate,etEmail,etPhone,etPerHour,etUserName,etPassword;
     Button btnSave, btnUpdate, btnDelete;
-    ConnectionClass connectionClass;
+    //ConnectionClass connectionClass;
+    ConnectionHelper connectionHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().hide(); //this will hide the title of my proj.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee);
 
@@ -41,7 +43,7 @@ public class EmployeeActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSave);
         btnUpdate = findViewById(R.id.btnUpdate);
         btnDelete = findViewById(R.id.btnDelete);
-        connectionClass = new ConnectionClass();
+        connectionHelper = new ConnectionHelper();
 
 
 
