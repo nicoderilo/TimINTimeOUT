@@ -9,11 +9,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/*
+* this class will call the table timesummary and display it to textview of list_view_template.xml
+*/
+
 public class ListItem {
 
     Connection connect;
     String ConnectionResult="";
     Boolean isSuccess=false;
+    ReportActivity reportActivity;
 
     public List<Map<String,String>>getlist()
     {
@@ -24,19 +29,20 @@ public class ListItem {
             connect = connectionHelper.conclass();
             if (connect !=null)
             {
-                String query = "SELECT * FROM timesummary";
+                String query = "SELECT * FROM timesummary WHERE date = '"+ ReportActivity.etDate.getText().toString() +"'";
+                //String query = "SELECT * FROM timesummary WHERE date = '2022-01-06'";
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next())
                 {
-                    //NOTE: we are calling the textview name(list_layout_template) and the column name of database
+                    //NOTE: we are calling the textview name from(list_layout_template) and the column name of database in mssql
                     Map<String,String> dtname = new HashMap<String,String>();
-                    dtname.put("timeId",resultSet.getString("timeId"));
-                    dtname.put("empUser",resultSet.getString("empUser"));
+                   // dtname.put("timeId",resultSet.getString("timeId"));
+                    //dtname.put("empUser",resultSet.getString("empUser"));
                     dtname.put("empFName",resultSet.getString("empFName"));
                     dtname.put("startTime",resultSet.getString("startTime"));
                     dtname.put("endTime",resultSet.getString("endTime"));
-                    dtname.put("duration",resultSet.getString("duration"));
+                   // dtname.put("duration",resultSet.getString("duration"));
                     dtname.put("date",resultSet.getString("date"));
                     data.add(dtname);
                 }

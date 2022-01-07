@@ -17,14 +17,16 @@
             android:id="@+id/tvTimeId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22sp" />
+            android:paddingRight="5dp"
+            android:textSize="22sp" /> <!--not using-->
 
         <TextView
             android:id="@+id/tvEmpUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tvTimeId"
-            android:textSize="22sp" />
+            android:paddingRight="15dp"
+            android:textSize="22sp" /><!--not using-->
 
         <TextView
             android:id="@+id/tvEmpFName"
@@ -35,6 +37,7 @@
 
         <TextView
             android:id="@+id/tvStartTime"
+            android:hint="test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tvEmpFName"
@@ -52,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tvEndTime"
-            android:textSize="22sp" />
+            android:textSize="22sp" /><!--not using-->
 
         <TextView
             android:id="@+id/tvDate"
@@ -60,6 +63,9 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tvDuration"
             android:textSize="22sp" />
+
+
+
 
     </RelativeLayout>
 
