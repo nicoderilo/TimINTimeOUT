@@ -21,6 +21,7 @@
         android:id="@+id/btnSend"
         android:layout_width="106dp"
         android:layout_height="66dp"
+        android:onClick="GetDatatoTextView"
         android:text="Send"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.632"
@@ -29,13 +30,14 @@
 
     <ListView
         android:id="@+id/lvSummary"
-        android:layout_width="708dp"
-        android:layout_height="279dp"
+        android:layout_width="721dp"
+        android:layout_height="195dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLoad"
-        app:layout_constraintVertical_bias="0.542" />
+        app:layout_constraintVertical_bias="0.88" />
 
     <EditText
         android:id="@+id/etSendTo"
@@ -52,11 +54,12 @@
         android:id="@+id/etSubject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="time in time out"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="37dp" />
+        tools:layout_editor_absoluteY="16dp" />
 
     <EditText
         android:id="@+id/etDate"
@@ -64,10 +67,32 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="date"
         android:inputType="textPersonName"
+        android:text="2021-12-20"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etSubject"
-        tools:text="2022-01-06" />
+        app:layout_constraintTop_toBottomOf="@+id/etSubject" />
+
+    <EditText
+        android:id="@+id/etEmpUserTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="4dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="nico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etSubject" />
+
+    <EditText
+        android:id="@+id/mtSummary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="mtSummary"
+        android:inputType="textMultiLine"
+        app:layout_constraintTop_toBottomOf="@+id/etSendTo"
+        tools:layout_editor_absoluteX="33dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

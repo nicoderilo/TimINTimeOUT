@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     TextClock textClock1, textClockDate;
     public TextView current_time_view,tvDuration,tvTimeMode,tvempName,tvTest;
     private Handler mHandler = new Handler();//for my timer
+    Connection connection;
+   // ConnectionHelper connectionHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +99,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //DISPLAY timesummary id - START
-                Connection connection = connectionClass();
+                ConnectionHelper connectionHelper = new ConnectionHelper();
+                connection = connectionHelper.conclass();
+                //Connection connection = connectionClass();
                 try {
                     if (connection !=null){
 
@@ -196,22 +200,22 @@ public class MainActivity extends AppCompatActivity {
             } //BtnOk - end
 
 
-            @SuppressLint("NewApi")
-            public Connection connectionClass(){
-                Connection con = null;
-                String ip="10.0.0.106", port="50379", username="sa",password="01Password", databasename="timetrack";
-                StrictMode.ThreadPolicy tp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                StrictMode.setThreadPolicy(tp);
-                try {
-                    Class.forName("net.sourceforge.jtds.jdbc.Driver");
-                    String connectionUrl="jdbc:jtds:sqlserver://"+ip+":"+port+";databasename="+databasename+";User="+username+";password="+password+";";
-                    con = DriverManager.getConnection(connectionUrl);
-                }
-                catch (Exception exception){
-                    Log.e("Error",exception.getMessage());
-                }
-                return  con;
-            }
+//            @SuppressLint("NewApi")
+//            public Connection connectionClass(){
+//                Connection con = null;
+//                String ip="10.0.0.106", port="50379", username="sa",password="01Password", databasename="timetrack";
+//                StrictMode.ThreadPolicy tp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//                StrictMode.setThreadPolicy(tp);
+//                try {
+//                    Class.forName("net.sourceforge.jtds.jdbc.Driver");
+//                    String connectionUrl="jdbc:jtds:sqlserver://"+ip+":"+port+";databasename="+databasename+";User="+username+";password="+password+";";
+//                    con = DriverManager.getConnection(connectionUrl);
+//                }
+//                catch (Exception exception){
+//                    Log.e("Error",exception.getMessage());
+//                }
+//                return  con;
+//            }
 
 
         });

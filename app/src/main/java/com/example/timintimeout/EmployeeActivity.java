@@ -23,7 +23,8 @@ public class EmployeeActivity extends AppCompatActivity {
     EditText etEmpId,etFirstName,etLastName,etBirthdate,etEmail,etPhone,etPerHour,etUserName,etPassword;
     Button btnSave, btnUpdate, btnDelete;
     //ConnectionClass connectionClass;
-    ConnectionHelper connectionHelper;
+    //ConnectionHelper connectionHelper;
+    Connection connection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide(); //this will hide the title of my proj.
@@ -43,7 +44,8 @@ public class EmployeeActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSave);
         btnUpdate = findViewById(R.id.btnUpdate);
         btnDelete = findViewById(R.id.btnDelete);
-        connectionHelper = new ConnectionHelper();
+        //connectionHelper = new ConnectionHelper();
+        ConnectionHelper connectionHelper = new ConnectionHelper();
 
 
 
@@ -52,7 +54,9 @@ public class EmployeeActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                DoRegister doRegister = new DoRegister();
 //                doRegister.execute("");
-                Connection connection = connectionClass();
+               // Connection connection = connectionClass();
+
+                connection = connectionHelper.conclass();
                 try {
                     if (connection !=null){
                         //String sqlinsert ="INSERT INTO employee VALUES ('"+ etEmpId.getText().toString()+"','"+ etFirstName.getText().toString() +"','"+etLastName.getText().toString()+"','"+etBirthdate.getText().toString()+"','"+etEmail.getText().toString()+"','"+etPhone.getText().toString()+"','"+etPerHour.getText().toString()+"','"+etUserName.getText().toString()+"','"+etPassword.getText().toString()+"')";
@@ -72,7 +76,7 @@ public class EmployeeActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Connection connection = connectionClass();
+                //Connection connection = connectionClass();
                 try {
                     if (connection !=null){
                         //String sqlinsert ="INSERT INTO employee VALUES ('"+ etEmpId.getText().toString()+"','"+ etFirstName.getText().toString() +"','"+etLastName.getText().toString()+"','"+etBirthdate.getText().toString()+"','"+etEmail.getText().toString()+"','"+etPhone.getText().toString()+"','"+etPerHour.getText().toString()+"','"+etUserName.getText().toString()+"','"+etPassword.getText().toString()+"')";
@@ -91,7 +95,7 @@ public class EmployeeActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Connection connection = connectionClass();
+                //Connection connection = connectionClass();
                 try {
                     if (connection !=null){
                         //String sqlinsert ="INSERT INTO employee VALUES ('"+ etEmpId.getText().toString()+"','"+ etFirstName.getText().toString() +"','"+etLastName.getText().toString()+"','"+etBirthdate.getText().toString()+"','"+etEmail.getText().toString()+"','"+etPhone.getText().toString()+"','"+etPerHour.getText().toString()+"','"+etUserName.getText().toString()+"','"+etPassword.getText().toString()+"')";
@@ -160,20 +164,20 @@ public class EmployeeActivity extends AppCompatActivity {
 //    }
 
 
-    @SuppressLint("NewApi")//
-    public Connection connectionClass(){
-        Connection con = null;
-        String ip="10.0.0.106", port="50379", username="sa",password="01Password", databasename="timetrack";
-        StrictMode.ThreadPolicy tp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(tp);
-        try {
-            Class.forName("net.sourceforge.jtds.jdbc.Driver");
-            String connectionUrl="jdbc:jtds:sqlserver://"+ip+":"+port+";databasename="+databasename+";User="+username+";password="+password+";";
-            con = DriverManager.getConnection(connectionUrl);
-        }
-        catch (Exception exception){
-            Log.e("Error",exception.getMessage());
-        }
-        return  con;
-    }
+//    @SuppressLint("NewApi")//
+//    public Connection connectionClass(){
+//        Connection con = null;
+//        String ip="10.0.0.106", port="50379", username="sa",password="01Password", databasename="timetrack";
+//        StrictMode.ThreadPolicy tp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//        StrictMode.setThreadPolicy(tp);
+//        try {
+//            Class.forName("net.sourceforge.jtds.jdbc.Driver");
+//            String connectionUrl="jdbc:jtds:sqlserver://"+ip+":"+port+";databasename="+databasename+";User="+username+";password="+password+";";
+//            con = DriverManager.getConnection(connectionUrl);
+//        }
+//        catch (Exception exception){
+//            Log.e("Error",exception.getMessage());
+//        }
+//        return  con;
+//    }
 }
