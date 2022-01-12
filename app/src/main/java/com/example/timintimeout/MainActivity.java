@@ -4,6 +4,7 @@ package com.example.timintimeout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
@@ -37,12 +38,14 @@ public class MainActivity extends AppCompatActivity {
     public TextView current_time_view,tvDuration,tvTimeMode,tvempName,tvTest;
     private Handler mHandler = new Handler();//for my timer
     Connection connection;
+
    // ConnectionHelper connectionHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide(); //this will hide the title of my proj
         super.onCreate(savedInstanceState);
+        hideNavigationBar();
         setContentView(R.layout.activity_main);
         Instant start = Instant.now();
         // time passes
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         tvTimeMode = findViewById(R.id.tvTimeMode);
         tvempName = findViewById(R.id.tvempName);
         tvTest = findViewById(R.id.tvTest);
-        btnTimeOut = findViewById(R.id.btnTimeOut);
+        //btnTimeOut = findViewById(R.id.btnTimeOut);
         btnOk = findViewById(R.id.btnOk);
         btnErase = findViewById(R.id.btnErase);
         btn0 = findViewById(R.id.btn0);
@@ -81,15 +84,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         //----------------------------------------------------------------------------------------------------
-        btnTimeOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String startTime =  current_time_view.getText().toString();
-                String endTime = current_time_view.getText().toString();
-                etStart.setText(startTime);
-                etEnd.setText(endTime);
-            }
-        });
+//        btnTimeOut.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String startTime =  current_time_view.getText().toString();
+//                String endTime = current_time_view.getText().toString();
+//                etStart.setText(startTime);
+//                etEnd.setText(endTime);
+//            }
+//        });
 
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,9 +108,9 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     if (connection !=null){
 
-                        Toast.makeText(getApplicationContext(), "connected to server", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "connected to server", Toast.LENGTH_SHORT).show();
                     } else if (connection ==null){
-                    Toast.makeText(getApplicationContext(), "Not connected to server", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Not connected to server", Toast.LENGTH_SHORT).show();
                 }
                 }  catch (Exception exception){
                     Log.e("Error",exception.getMessage());
@@ -137,10 +140,21 @@ public class MainActivity extends AppCompatActivity {
                             String Time_IN_Value = etStart.getText().toString();
                             if (Time_IN_Value.equals("")) {
 
+                                String sqlGetName ="SELECT * FROM employee WHERE empUser = '"+ etEmpCode.getText().toString() +"'";
+
+                                st = connection.createStatement();
+                                rs = st.executeQuery(sqlGetName);
+
+                                while(rs.next()){
+
+                                    tvempName.setText(rs.getString(2)); //get empFName to save
+
+                                }
                                 etStart.setText(current_time_view.getText().toString());
                                         String sqlinsert ="INSERT INTO timeSummary ([empUser],[empFName],[startTime],[endTime],[duration],[date]) VALUES ('"+ etEmpCode.getText().toString() +"','"+tvempName.getText().toString()+"','"+etStart.getText().toString()+"','"+etEnd.getText().toString()+"','"+tvDuration.getText().toString()+"','"+ textClockDate.getText().toString()+"')";
-                                        Toast.makeText(getApplicationContext(), "Added Successful", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Time In Successful", Toast.LENGTH_LONG).show();
                                         st.executeQuery(sqlinsert);
+                                Toast.makeText(getApplicationContext(), "Time IN Successful", Toast.LENGTH_SHORT).show();
                             }//save startTime - END
 
 
@@ -190,33 +204,16 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Added Successful", Toast.LENGTH_LONG).show();
                         Statement st = connection.createStatement();
                         st.executeQuery(sqlinsert);
+                        Toast.makeText(getApplicationContext(), "Time OUT Successful", Toast.LENGTH_SHORT).show();
                     } catch (ParseException | SQLException e) {
                         e.printStackTrace();
                     }
 
                 } //this code will get the time and display in edit text - END
 
-
+                Intent intent = new Intent(MainActivity.this, TimeInOutActivity.class);
+                startActivity(intent);
             } //BtnOk - end
-
-
-//            @SuppressLint("NewApi")
-//            public Connection connectionClass(){
-//                Connection con = null;
-//                String ip="10.0.0.106", port="50379", username="sa",password="01Password", databasename="timetrack";
-//                StrictMode.ThreadPolicy tp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//                StrictMode.setThreadPolicy(tp);
-//                try {
-//                    Class.forName("net.sourceforge.jtds.jdbc.Driver");
-//                    String connectionUrl="jdbc:jtds:sqlserver://"+ip+":"+port+";databasename="+databasename+";User="+username+";password="+password+";";
-//                    con = DriverManager.getConnection(connectionUrl);
-//                }
-//                catch (Exception exception){
-//                    Log.e("Error",exception.getMessage());
-//                }
-//                return  con;
-//            }
-
 
         });
 
@@ -291,6 +288,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void hideNavigationBar() {
+        this.getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_FULLSCREEN |
+                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                        View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        );
+    }
 
 
     private void display(String num) {

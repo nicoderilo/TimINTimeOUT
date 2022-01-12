@@ -1,62 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="800dp"
     tools:context=".TimeInOutActivity">
 <!---->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/bg5"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
+            <!--            android:gravity="center_horizontal"-->
 
-            <TextClock
-                android:id="@+id/tcDate"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:format12Hour="dd-MM-yyyy"
-                android:gravity="center_horizontal"
-                android:textColor="#d41709"
-                android:textSize="20sp"
-                android:hint="Jan 1, 2022"
-                android:textStyle="bold" />
 
             <TextClock
                 android:id="@+id/tcTime"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:format12Hour="hh:mm:ss a"
-                android:gravity="center_horizontal"
-                android:textColor="#d41709"
-                android:textSize="33sp"
-                android:hint="12:00:00 PM"
+                android:textAlignment="center"
+                android:textColor="#0040FF"
+                android:text="12:00:00 PM"
+                android:textSize="130sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
+            <TextClock
+                android:id="@+id/tcDate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_centerHorizontal="true"
+                android:format12Hour="dd-MMM-yyyy"
+                android:text="1-Jan-2022"
+                android:textAlignment="center"
+                android:textColor="#152375"
+                android:textSize="45sp"
+                android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/btnTimeIn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Time In" />
+        </LinearLayout>
 
-                <Button
-                    android:id="@+id/btnTimeOut"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Time Out" />
-            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            app:layout_column="0">
+
+<!--            <Button-->
+<!--                android:id="@+id/btnTimeIn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:layout_margin="20dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Clock  In"-->
+<!--                android:textSize="25sp" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btnTimeOut"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:layout_margin="20dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Clock Out"-->
+<!--                android:textSize="25sp" />-->
+
+            <ImageButton
+                android:id="@+id/imbtnIn"
+                android:layout_width="20dp"
+
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                app:srcCompat="@drawable/clockin1" />
+            <ImageButton
+                android:id="@+id/imbtnOut"
+
+
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                app:srcCompat="@drawable/clockout1" />
         </LinearLayout>
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

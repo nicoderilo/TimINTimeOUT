@@ -21,6 +21,7 @@ public class ConnectionHelper {
     public Connection conclass()
     {
         ip="10.0.0.106";
+        //ip="192.168.0.45";
         port="50379";
         db="timetrack";
         un="sa";

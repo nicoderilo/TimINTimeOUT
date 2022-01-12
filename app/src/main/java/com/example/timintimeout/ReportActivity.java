@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -47,10 +48,10 @@ public class ReportActivity extends AppCompatActivity {
         lvSummary = findViewById(R.id.lvSummary);
         etEmpUserTest = findViewById(R.id.etEmpUserTest);
 
-        btnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+//        btnSend.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
 //                Intent intent = new Intent(Intent.ACTION_SENDTO);
 //                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{etSendTo.getText().toString()});
 //                intent.putExtra(Intent.EXTRA_SUBJECT,etSubject.getText().toString());
@@ -61,9 +62,9 @@ public class ReportActivity extends AppCompatActivity {
 //                } else {
 //                    Toast.makeText(ReportActivity.this, "no application", Toast.LENGTH_SHORT).show();
 //                }
-               // mtSummary.setText(lvSummary.getAutofillValue().toString());
-            }
-        });
+//               // mtSummary.setText(lvSummary.getAutofillValue().toString());
+//            }
+//        });
 
     }
 
@@ -102,8 +103,11 @@ public class ReportActivity extends AppCompatActivity {
 
                 while (rs.next())
                 {
-                    //lvSummary.setText(rs.getString(2));
-                    etEmpUserTest.setText(rs.getString(4));
+                   // lvSummary.setText(rs.getString(2));
+                    //mtSummary.setText(rs.getString(4));
+                  // mtSummary.setText(rs.getString(1) + "'\n'"+ mtSummary.setText(rs.getString(2) );
+                    mtSummary.setText(rs.getString(2));
+
 
                 }
 

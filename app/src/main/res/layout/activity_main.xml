@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -42,47 +42,73 @@
         android:gravity="center_horizontal"
         android:text=""
         android:textSize="26sp" />
-    <TextView
-         android:id="@+id/tvTest"
-         android:hint="test"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text=""
-         android:textSize="26sp" />
-    <TextView
-        android:id="@+id/tvempName"
-        android:hint="Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="26sp" />
 
-    <TextView
-        android:id="@+id/tvDuration"
-        android:hint="duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="26sp" />
-
-    <!--    <Button-->
+        <!--    <Button-->
     <!--        android:id="@+id/get_current_time"-->
     <!--        android:layout_width="match_parent"-->
     <!--        android:layout_height="wrap_content"-->
     <!--        android:layout_marginTop="50dp"-->
     <!--        android:onClick="getCurrentTime"-->
     <!--        android:text="Get Current Time" />-->
-    <EditText
-        android:id="@+id/etStart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/etEnd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="end"/>
 
-    <LinearLayout
+        <LinearLayout
+            android:layout_width="744dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--        <Button-->
+            <!--            android:id="@+id/btnDuration"-->
+            <!--            android:layout_width="210dp"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginTop="50dp"-->
+            <!--            android:text="Duration" />-->
+
+            <!--        <Button-->
+            <!--            android:id="@+id/btnTimeOut"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginTop="50dp"-->
+            <!--            android:text="Timeout" />-->
+
+            <TextView
+                android:id="@+id/tvempName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:text=""
+                android:textSize="26sp" />
+            <TextView
+                android:id="@+id/tvDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="duration"
+                android:text=""
+                android:textSize="26sp" />
+
+            <EditText
+                android:id="@+id/etStart"
+                android:hint="start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="test"
+                android:text=""
+                android:textSize="26sp" />
+
+
+
+            <EditText
+                android:id="@+id/etEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="end" />
+        </LinearLayout>
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -129,27 +155,7 @@
         <!--            android:textColor="#006891" />-->
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="153dp"
-        android:orientation="horizontal">
-
-<!--        <Button-->
-<!--            android:id="@+id/btnDuration"-->
-<!--            android:layout_width="210dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="50dp"-->
-<!--            android:text="Duration" />-->
-
-        <Button
-            android:id="@+id/btnTimeOut"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Timeout" />
-    </LinearLayout>
-
-    <androidx.gridlayout.widget.GridLayout
+        <androidx.gridlayout.widget.GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -317,8 +323,14 @@
         android:text="Time OUT"
         android:textAlignment="center"
         android:textSize="26sp" />
-    <!--        android:format12Hour="hh:mm:ss a"-->
+
+        <!--        android:format12Hour="hh:mm:ss a"-->
 
 
     </LinearLayout>
-</ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"></LinearLayout>
+</RelativeLayout>
