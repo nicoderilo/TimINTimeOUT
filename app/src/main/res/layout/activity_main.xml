@@ -71,14 +71,14 @@
                 android:layout_height="wrap_content"
                 android:hint="Name"
                 android:text=""
-                android:textSize="26sp" />
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/tvDuration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="duration"
                 android:text=""
-                android:textSize="26sp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/etStart"
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:hint="test"
                 android:text=""
-                android:textSize="26sp" />
+                android:textSize="20sp" />
 
 
 
@@ -100,6 +100,8 @@
                 android:id="@+id/etEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
                 android:hint="end" />
         </LinearLayout>
 
@@ -113,10 +115,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:textSize="30dp"
+            android:textSize="50dp"
             android:hint="0 0 0 0"
             android:maxLength="4"
             android:text=""
+            android:textColorHint="#1B0091"
             android:textColor="#006891"/>
 
         <!--        <EditText-->
@@ -168,7 +171,7 @@
             android:id="@+id/btn7"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:textSize="50px"
+            android:textSize="60px"
             android:layout_marginTop="10dp"
             android:text="7"
             app:layout_column="0"
@@ -178,7 +181,7 @@
             android:id="@+id/btn8"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:textSize="50px"
+            android:textSize="60px"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -188,7 +191,7 @@
             android:id="@+id/btn9"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:textSize="50px"
+            android:textSize="60px"
             android:layout_marginTop="10dp"
             android:text="9" />
 
@@ -196,8 +199,7 @@
             android:id="@+id/btn4"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:textSize="50px"
-            android:layout_marginTop="10dp"
+            android:textSize="60px"
             android:text="4"
             app:layout_column="0"
             app:layout_row="1" />
@@ -206,18 +208,16 @@
             android:id="@+id/btn5"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:textSize="50px"
+            android:textSize="60px"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
             android:text="5" />
 
         <Button
             android:id="@+id/btn6"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:textSize="50px"
-            android:layout_marginTop="10dp"
+            android:textSize="60px"
             android:text="6"
             app:layout_column="2"
             app:layout_row="1" />
@@ -226,8 +226,7 @@
             android:id="@+id/btn1"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:textSize="50px"
-            android:layout_marginTop="10dp"
+            android:textSize="60px"
             android:text="1"
             app:layout_column="0"
             app:layout_row="2" />
@@ -236,9 +235,8 @@
             android:id="@+id/btn2"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:textSize="50px"
+            android:textSize="60px"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:text="2"
             app:layout_column="1"
@@ -248,8 +246,7 @@
             android:id="@+id/btn3"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:textSize="50px"
-            android:layout_marginTop="10dp"
+            android:textSize="60px"
             android:text="3"
             app:layout_column="2"
             app:layout_row="2" />
@@ -257,10 +254,9 @@
         <Button
             android:id="@+id/btnOk"
             android:layout_width="150dp"
-            android:layout_height="65dp"
-            android:textSize="40px"
+            android:layout_height="73dp"
+            android:textSize="60px"
             android:text="OK"
-            android:layout_marginTop="10dp"
             app:layout_column="0"
             app:layout_row="3" />
 
@@ -268,23 +264,21 @@
             android:id="@+id/btn0"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:textSize="50px"
-            android:layout_marginTop="10dp"
+            android:textSize="60px"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:text="0"
             app:layout_column="1"
             app:layout_row="3" />
 
-        <Button
-            android:id="@+id/btnErase"
-            android:layout_width="150dp"
-            android:layout_height="65dp"
-            android:layout_marginTop="10dp"
-            android:textSize="35px"
-            android:text="Delete"
-            app:layout_column="2"
-            app:layout_row="3" />
+            <Button
+                android:id="@+id/btnErase"
+                android:layout_width="150dp"
+                android:layout_height="73dp"
+                android:textSize="55px"
+                android:text="Del"
+                app:layout_column="2"
+                app:layout_row="3" />
 
     </androidx.gridlayout.widget.GridLayout>
 
@@ -294,7 +288,7 @@
         android:layout_height="wrap_content"
         android:text="Time OUT"
         android:textAlignment="center"
-        android:textSize="26sp" />
+        android:textSize="18sp" />
 
         <!--        android:format12Hour="hh:mm:ss a"-->
 
