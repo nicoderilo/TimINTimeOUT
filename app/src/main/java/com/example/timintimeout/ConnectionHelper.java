@@ -21,6 +21,7 @@ public class ConnectionHelper {
     public Connection conclass()
     {
         //ip="192.168.0.55"; //rocs
+        //ip="192.168.0.14"; //rocs POS
         ip="10.0.0.106";
         port="50379";
         db="timetrack";
