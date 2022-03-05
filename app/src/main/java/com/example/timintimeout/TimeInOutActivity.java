@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 
 public class TimeInOutActivity extends AppCompatActivity {
     Button btnTimeIn, btnTimeOut;
-    ImageButton imbtnIn,imbtnOut;
+    ImageButton imbtnIn,imbtnOut,imgbtnHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class TimeInOutActivity extends AppCompatActivity {
 //        btnTimeOut = findViewById(R.id.btnTimeOut);
         imbtnIn = findViewById(R.id.imbtnIn);
         imbtnOut = findViewById(R.id.imbtnOut);
+        imgbtnHome = findViewById(R.id.imgbtnHome);
 
         hideNavigationBar();
 
@@ -47,7 +48,19 @@ public class TimeInOutActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        imgbtnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TimeInOutActivity.this, HomeActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
     }
+
+
 
     public void hideNavigationBar() {
         this.getWindow().getDecorView().setSystemUiVisibility(

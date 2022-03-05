@@ -1,4 +1,7 @@
 //if statement in OK button 12:57 am Dec3
+/*
+* NOTE: Invisible duration,start,end name, date, time in Xml file
+* */
 package com.example.timintimeout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     EditText etStart, etEnd, etEmpCode,etEmpCode2,etEmpCode3,etEmpCode4;
     Button btnTimeOut,btnOk,btnErase,btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9;
     TextClock textClock1, textClockDate;
+    ImageButton imbtnHome;
     public TextView current_time_view,tvDuration,tvTimeMode,tvempName,tvTest;
     private Handler mHandler = new Handler();//for my timer
     Connection connection;
@@ -72,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         btn7 = findViewById(R.id.btn7);
         btn8 = findViewById(R.id.btn8);
         btn9 = findViewById(R.id.btn9);
+        imbtnHome = findViewById(R.id.imbtnHome);
 
         textClock1 = findViewById(R.id.textClock1);
         textClockDate = findViewById(R.id.textClockDate);
@@ -215,6 +221,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             } //BtnOk - end
 
+        });
+
+        imbtnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
         });
 
         btn1.setOnClickListener(new View.OnClickListener() {

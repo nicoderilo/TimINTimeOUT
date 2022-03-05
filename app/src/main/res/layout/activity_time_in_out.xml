@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="800dp"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg5actual"
     tools:context=".TimeInOutActivity">
-<!---->
+    <!---->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg5"
         android:orientation="vertical">
 
         <LinearLayout
@@ -18,19 +18,18 @@
             android:orientation="vertical">
             <!--            android:gravity="center_horizontal"-->
 
-
             <TextClock
                 android:id="@+id/tcTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@null"
-                android:layout_centerHorizontal="true"
                 android:format12Hour="hh:mm:ss a"
+                android:paddingBottom="@null"
+                android:text="12:00:00 PM"
                 android:textAlignment="center"
                 android:textColor="#0040FF"
-                android:text="12:00:00 PM"
                 android:textSize="130sp"
                 android:textStyle="bold" />
+            <!--            android:layout_centerHorizontal="true"-->
 
             <TextClock
                 android:id="@+id/tcDate"
@@ -50,45 +49,58 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
-            android:layout_marginTop="30dp"
             app:layout_column="0">
 
-<!--            <Button-->
-<!--                android:id="@+id/btnTimeIn"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="200dp"-->
-<!--                android:layout_margin="20dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:text="Clock  In"-->
-<!--                android:textSize="25sp" />-->
+            <!--            <Button-->
+            <!--                android:id="@+id/btnTimeIn"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="200dp"-->
+            <!--                android:layout_margin="20dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:text="Clock  In"-->
+            <!--                android:textSize="25sp" />-->
 
-<!--            <Button-->
-<!--                android:id="@+id/btnTimeOut"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="200dp"-->
-<!--                android:layout_margin="20dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:text="Clock Out"-->
-<!--                android:textSize="25sp" />-->
+            <!--            <Button-->
+            <!--                android:id="@+id/btnTimeOut"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="200dp"-->
+            <!--                android:layout_margin="20dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:text="Clock Out"-->
+            <!--                android:textSize="25sp" />-->
 
             <ImageButton
                 android:id="@+id/imbtnIn"
                 android:layout_width="20dp"
-
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
                 app:srcCompat="@drawable/clockin1" />
+
             <ImageButton
                 android:id="@+id/imbtnOut"
-
-
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
                 app:srcCompat="@drawable/clockout1" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:gravity="right"
+            android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/imgbtnHome"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="fitXY"
+                android:background="@null"
+                android:layout_marginRight="5dp"
+                app:srcCompat="@drawable/home" />
         </LinearLayout>
     </LinearLayout>
 
