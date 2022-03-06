@@ -2,13 +2,17 @@ package com.example.timintimeout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -18,6 +22,7 @@ import android.widget.Toast;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -29,9 +34,10 @@ public class ReportActivity extends AppCompatActivity {
     public static EditText etDate;
     public static TextView tvEmpUser;
     ListView lvSummary;
-
+    TextView tvDatePicker;
     Connection connect;
     String connectionResult="";
+    DatePickerDialog.OnDateSetListener setListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,13 @@ public class ReportActivity extends AppCompatActivity {
         tvEmpUser = findViewById(R.id.tvEmpUser);
         lvSummary = findViewById(R.id.lvSummary);
         etEmpUserTest = findViewById(R.id.etEmpUserTest);
+        tvDatePicker = findViewById(R.id.tvDatePicker);
+        Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+
 
 //        btnSend.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -65,7 +78,45 @@ public class ReportActivity extends AppCompatActivity {
 //               // mtSummary.setText(lvSummary.getAutofillValue().toString());
 //            }
 //        });
+        tvDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        ReportActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth
+                        ,setListener,year,month,day);
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog.show();
+            }
+        });
 
+        setListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month+1;
+                String date = year + "/" +month+ "/" + year;
+                tvDatePicker.setText(date);
+            }
+        };
+
+        etDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        ReportActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        month = month+1;
+                       // String date = day+"-"+month+"-"+year;
+                        String date = year+"-"+month+"-"+day;
+                        etDate.setText(date);
+                    }
+                },year,month,day);
+                datePickerDialog.show();
+
+                //Toast.makeText(getApplicationContext(), "Disabled", Toast.LENGTH_SHORT).show();
+                //startActivity(intent);
+            }
+        });
     }
 
 

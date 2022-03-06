@@ -34,6 +34,7 @@
             app:cardElevation="6dp">
 
             <LinearLayout
+                android:id="@+id/llClockIn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#dffaff"
@@ -71,12 +72,13 @@
             >
 
             <LinearLayout
-                android:background="#dffaff"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:gravity="center"
+                android:id="@+id/llSchedule"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#dffaff"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <ImageView
                     android:id="@+id/ivSchedule"
@@ -108,10 +110,10 @@
             >
 
             <LinearLayout
+                android:id="@+id/llEmployee"
                 android:layout_width="match_parent"
                 android:layout_height="191dp"
                 android:background="#dffaff"
-
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="16dp">
@@ -147,12 +149,13 @@
             >
 
             <LinearLayout
-                android:background="#dffaff"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:gravity="center"
+                android:id="@+id/llReports"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#dffaff"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
 
 
                 <ImageView
@@ -160,13 +163,14 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@drawable/report" />
+
                 <TextView
-                    android:layout_marginTop="12dp"
-                    android:textColor="#6f6f6f"
-                    android:textSize="18sp"
-                    android:text="Reports"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Reports"
+                    android:textColor="#6f6f6f"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
