@@ -11,6 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -29,17 +31,14 @@
             android:onClick="GetData"
             android:text="Load" />
 
-        <TextView
-            android:id="@+id/tvDatePicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="test date piccker" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginBottom="30dp"
         android:orientation="horizontal">
 
         <EditText
@@ -50,26 +49,33 @@
             android:inputType="textPersonName"
             android:text="nicoderilo@gmail.com" />
 
-        <EditText
-            android:id="@+id/etSubject"
+<!--        android:id="@+id/etSubject"-->
+        <TextView
+            android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:ems="10"
             android:inputType="textPersonName"
             android:textAlignment="center"
-            android:text="Date" />
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Date :" />
 <!--        android:text="time in time out"-->
-
-        <EditText
-            android:id="@+id/etDate"
+        <TextView
+            android:id="@+id/tvDatePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Select date"/>
-<!--        android:text="2021-12-20"-->
+            android:textSize="18dp"
+            android:hint="Select Date" />
+<!--        <EditText-->
+<!--            android:id="@+id/etDate"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            android:ems="10"-->
+<!--            android:inputType="textPersonName"-->
+<!--            android:hint="Select date"/>-->
+<!--&lt;!&ndash;        android:text="2021-12-20"&ndash;&gt;-->
 
         <EditText
             android:id="@+id/etEmpUserTest"
@@ -79,14 +85,14 @@
             android:inputType="textPersonName"
             android:text="nico" />
 
-        <EditText
-            android:id="@+id/mtSummary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="mtSummary"
-            android:inputType="textMultiLine" />
+<!--        <EditText-->
+<!--            android:id="@+id/mtSummary"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:ems="10"-->
+<!--            android:gravity="start|top"-->
+<!--            android:hint="mtSummary"-->
+<!--            android:inputType="textMultiLine" />-->
 
     </LinearLayout>
 
@@ -98,9 +104,10 @@
 
         <ListView
             android:id="@+id/lvSummary"
-            android:layout_width="wrap_content"
+            android:layout_width="500dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAlignment="center"
             tools:layout_editor_absoluteX="210dp">
 
         </ListView>

@@ -29,7 +29,7 @@
                 android:textColor="#d41709"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:visibility="invisible" />
+                android:visibility="visible" />
 
             <TextClock
                 android:id="@+id/textClock1"
@@ -54,7 +54,7 @@
                 android:hint="24:00:00"
                 android:text=""
                 android:textSize="26sp"
-                android:visibility="invisible" />
+                android:visibility="visible" />
         </LinearLayout>
 
         <!--    <Button-->

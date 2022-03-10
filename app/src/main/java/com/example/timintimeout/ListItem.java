@@ -29,7 +29,11 @@ public class ListItem {
             connect = connectionHelper.conclass();
             if (connect !=null)
             {
-                String query = "SELECT * FROM timesummary WHERE date = '"+ ReportActivity.etDate.getText().toString() +"'";
+                //this old query below uses etDate edit text - see Reports activity and xml
+               // String query = "SELECT * FROM timesummary WHERE date = '"+ ReportActivity.etDate.getText().toString() +"'";
+                String query = "SELECT * FROM timesummary WHERE date = '"+ ReportActivity.tvDatePicker.getText().toString() +"'";
+               // String query = "SELECT [empFName],CONVERT(VARCHAR[startTime],108) AS startTime,[endTime],[date]  FROM timesummary WHERE date = '"+ ReportActivity.etDate.getText().toString() +"'";
+                //String query = "SELECT empFName,CONVERT(VARCHAR,startTime,108),endTime,date FROM timesummary WHERE date = '"+ ReportActivity.etDate.getText().toString() +"'";
                 //String query = "SELECT * FROM timesummary WHERE date = '2022-01-06'";
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);

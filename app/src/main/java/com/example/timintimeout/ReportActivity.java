@@ -27,28 +27,31 @@ import java.util.List;
 import java.util.Map;
 
 public class ReportActivity extends AppCompatActivity {
+
     Button btnLoad, btnSend;
     public EditText etSendTo;
     public EditText etSubject,etEmpUserTest;
-    public EditText mtSummary;
-    public static EditText etDate;
+    //public EditText mtSummary;
+    //public static EditText etDate;
     public static TextView tvEmpUser;
     ListView lvSummary;
-    TextView tvDatePicker;
+    public static TextView tvDatePicker, tvDate;
     Connection connect;
     String connectionResult="";
     DatePickerDialog.OnDateSetListener setListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        hideNavigationBar(); //this will hide nav bar
         getSupportActionBar().hide(); //this will hide the title of my proj.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
         btnLoad = findViewById(R.id.btnLoad);
         btnSend = findViewById(R.id.btnSend);
         etSendTo = findViewById(R.id.etSendTo);
-        etSubject = findViewById(R.id.etSubject);
-        etDate = findViewById(R.id.etDate);
+        tvDate = findViewById(R.id.tvDate);
+        //etSubject = findViewById(R.id.etSubject);
+        //etDate = findViewById(R.id.etDate);
        // mtSummary = findViewById(R.id.mtSummary);
         tvEmpUser = findViewById(R.id.tvEmpUser);
         lvSummary = findViewById(R.id.lvSummary);
@@ -61,62 +64,73 @@ public class ReportActivity extends AppCompatActivity {
 
 
 
-//        btnSend.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent intent = new Intent(Intent.ACTION_SENDTO);
-//                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{etSendTo.getText().toString()});
-//                intent.putExtra(Intent.EXTRA_SUBJECT,etSubject.getText().toString());
-//                intent.putExtra(Intent.EXTRA_TEXT,etSubject.getText().toString());
-//                intent.setData(Uri.parse("mailto:"));
-//                if (intent.resolveActivity(getPackageManager()) !=null) {
-//                    startActivity(intent);
-//                } else {
-//                    Toast.makeText(ReportActivity.this, "no application", Toast.LENGTH_SHORT).show();
-//                }
-//               // mtSummary.setText(lvSummary.getAutofillValue().toString());
-//            }
-//        });
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{etSendTo.getText().toString()});
+                intent.putExtra(Intent.EXTRA_SUBJECT,tvDatePicker.getText().toString());
+                intent.putExtra(Intent.EXTRA_TEXT,tvDatePicker.getText().toString());
+                intent.setData(Uri.parse("mailto:"));
+                if (intent.resolveActivity(getPackageManager()) !=null) {
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(ReportActivity.this, "no application", Toast.LENGTH_SHORT).show();
+                }
+               // mtSummary.setText(lvSummary.getAutofillValue().toString());
+            }
+        });
         tvDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                DatePickerDialog datePickerDialog1 = new DatePickerDialog(
                         ReportActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth
                         ,setListener,year,month,day);
-                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                datePickerDialog.show();
+                datePickerDialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog1.show();
+
             }
+
         });
 
         setListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month+1;
-                String date = year + "/" +month+ "/" + year;
+                String date = year + "-" +month+ "-" + dayOfMonth;
                 tvDatePicker.setText(date);
             }
         };
 
-        etDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        ReportActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        month = month+1;
-                       // String date = day+"-"+month+"-"+year;
-                        String date = year+"-"+month+"-"+day;
-                        etDate.setText(date);
-                    }
-                },year,month,day);
-                datePickerDialog.show();
+//        etDate.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                DatePickerDialog datePickerDialog = new DatePickerDialog(
+//                        ReportActivity.this, new DatePickerDialog.OnDateSetListener() {
+//                    @Override
+//                    public void onDateSet(DatePicker view, int year, int month, int day) {
+//                        month = month+1;
+//                       // String date = day+"-"+month+"-"+year;
+//                        String date = year+"-"+month+"-"+day;
+//                        etDate.setText(date);
+//                    }
+//                },year,month,day);
+//                datePickerDialog.show();
+//
+//            }
+//        });
+    }
 
-                //Toast.makeText(getApplicationContext(), "Disabled", Toast.LENGTH_SHORT).show();
-                //startActivity(intent);
-            }
-        });
+    private void hideNavigationBar() {
+        this.getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_FULLSCREEN |
+                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                        View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        );
     }
 
 
@@ -139,7 +153,7 @@ public class ReportActivity extends AppCompatActivity {
 
     public void GetDatatoTextView(View v)
     {
-        EditText mtSummary = (EditText) findViewById(R.id.mtSummary);
+        //EditText mtSummary = (EditText) findViewById(R.id.mtSummary);
         EditText etEmpUserTest = (EditText) findViewById(R.id.etEmpUserTest);
         try {
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -157,7 +171,7 @@ public class ReportActivity extends AppCompatActivity {
                    // lvSummary.setText(rs.getString(2));
                     //mtSummary.setText(rs.getString(4));
                   // mtSummary.setText(rs.getString(1) + "'\n'"+ mtSummary.setText(rs.getString(2) );
-                    mtSummary.setText(rs.getString(2));
+                    //mtSummary.setText(rs.getString(2));
 
 
                 }
