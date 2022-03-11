@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class ReportActivity extends AppCompatActivity {
     Button btnLoad, btnSend;
     public EditText etSendTo;
     public EditText etSubject,etEmpUserTest;
+    ImageButton imbtnHome;
     //public EditText mtSummary;
     //public static EditText etDate;
     public static TextView tvEmpUser;
@@ -57,13 +59,20 @@ public class ReportActivity extends AppCompatActivity {
         lvSummary = findViewById(R.id.lvSummary);
         etEmpUserTest = findViewById(R.id.etEmpUserTest);
         tvDatePicker = findViewById(R.id.tvDatePicker);
+        imbtnHome = findViewById(R.id.imbtnHome);
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
 
-
+        imbtnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ReportActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

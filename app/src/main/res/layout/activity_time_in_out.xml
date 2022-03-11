@@ -11,7 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/imgbtnHome"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="fitXY"
+                android:background="@null"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                app:srcCompat="@drawable/home" />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,12 +37,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:format12Hour="hh:mm:ss a"
-                android:paddingBottom="@null"
                 android:text="12:00:00 PM"
                 android:textAlignment="center"
                 android:textColor="#0040FF"
                 android:textSize="130sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
             <!--            android:layout_centerHorizontal="true"-->
 
             <TextClock
@@ -88,20 +101,7 @@
                 app:srcCompat="@drawable/clockout1" />
 
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:gravity="right"
-            android:orientation="vertical">
-            <ImageButton
-                android:id="@+id/imgbtnHome"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:scaleType="fitXY"
-                android:background="@null"
-                android:layout_marginRight="5dp"
-                app:srcCompat="@drawable/home" />
-        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

@@ -3,14 +3,21 @@ package com.example.timintimeout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.sql.Connection;
@@ -18,15 +25,19 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 
 public class EmployeeActivity extends AppCompatActivity {
     EditText etEmpId,etFirstName,etLastName,etBirthdate,etEmail,etPhone,etPerHour,etUserName,etPassword;
     Button btnSave, btnUpdate, btnDelete;
+    ImageButton imbtnHome;
     //ConnectionClass connectionClass;
     //ConnectionHelper connectionHelper;
     Connection connection;
+    DatePickerDialog.OnDateSetListener setListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        hideNavigationBar(); //this will hide nav bar
         getSupportActionBar().hide(); //this will hide the title of my proj.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee);
@@ -40,11 +51,15 @@ public class EmployeeActivity extends AppCompatActivity {
         etPerHour = findViewById(R.id.etPerHour);
         etUserName = findViewById(R.id.etUserName);
         etPassword = findViewById(R.id.etPassword);
-
+        imbtnHome = findViewById(R.id.imbtnHome);
         btnSave = findViewById(R.id.btnSave);
         btnUpdate = findViewById(R.id.btnUpdate);
         btnDelete = findViewById(R.id.btnDelete);
         //connectionHelper = new ConnectionHelper();
+        Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
         ConnectionHelper connectionHelper = new ConnectionHelper();
 
 
@@ -55,7 +70,9 @@ public class EmployeeActivity extends AppCompatActivity {
 //                DoRegister doRegister = new DoRegister();
 //                doRegister.execute("");
                // Connection connection = connectionClass();
-
+            if (TextUtils.isEmpty(etFirstName.getText().toString()) || TextUtils.isEmpty(etUserName.getText().toString()) || TextUtils.isEmpty(etPassword.getText().toString())) {
+                Toast.makeText(getApplicationContext(), "Please input required data", Toast.LENGTH_LONG).show();
+            } else {
                 connection = connectionHelper.conclass();
                 try {
                     if (connection !=null){
@@ -64,13 +81,14 @@ public class EmployeeActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Added Successful", Toast.LENGTH_LONG).show();
                         Statement st = connection.createStatement();
                         ResultSet rs = st.executeQuery(sqlinsert);
-
-
                     }
                 }  catch (Exception exception){
                     Log.e("Error",exception.getMessage());
                 }
             }
+
+
+            } //end
         });
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +129,47 @@ public class EmployeeActivity extends AppCompatActivity {
                 }
             }
         });
+
+        imbtnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EmployeeActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        etBirthdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog1 = new DatePickerDialog(
+                        EmployeeActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth
+                        ,setListener,year,month,day);
+                datePickerDialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog1.show();
+
+            }
+
+        });
+
+        setListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month+1;
+                String date = year + "-" +month+ "-" + dayOfMonth;
+                etBirthdate.setText(date);
+            }
+        };
+    }
+
+    private void hideNavigationBar() {
+        this.getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_FULLSCREEN |
+                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                        View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        );
     }
 
 //    private class DoRegister extends AsyncTask<String,String,String> {

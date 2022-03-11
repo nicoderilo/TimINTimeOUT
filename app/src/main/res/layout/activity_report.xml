@@ -5,96 +5,129 @@
     android:layout_width="match_parent"
     android:layout_height="800dp"
     android:orientation="vertical"
-    android:background="@drawable/bg5actual"
+    android:gravity="center"
+    android:background="@drawable/bg2"
     tools:context=".ReportActivity">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:gravity="right">
 
-        <Button
-            android:id="@+id/btnSend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="GetDatatoTextView"
-            android:text="Send" />
-
-        <Button
-            android:id="@+id/btnLoad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:onClick="GetData"
-            android:text="Load" />
-
-
+        <ImageButton
+            android:id="@+id/imbtnHome"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/home" />
     </LinearLayout>
-
+<!--    Main container for button an text box-->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginBottom="30dp"
-        android:orientation="horizontal">
+        android:padding="15dp"
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/etSendTo"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="nicoderilo@gmail.com" />
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-<!--        android:id="@+id/etSubject"-->
-        <TextView
-            android:id="@+id/tvDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="Date :" />
-<!--        android:text="time in time out"-->
-        <TextView
-            android:id="@+id/tvDatePicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:hint="Select Date" />
-<!--        <EditText-->
-<!--            android:id="@+id/etDate"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="8dp"-->
-<!--            android:ems="10"-->
-<!--            android:inputType="textPersonName"-->
-<!--            android:hint="Select date"/>-->
-<!--&lt;!&ndash;        android:text="2021-12-20"&ndash;&gt;-->
+            <Button
+                android:id="@+id/btnSend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="GetDatatoTextView"
+                android:text="Send" />
 
-        <EditText
-            android:id="@+id/etEmpUserTest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="nico" />
+            <Button
+                android:id="@+id/btnLoad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:onClick="GetData"
+                android:text="Get Data" />
 
-<!--        <EditText-->
-<!--            android:id="@+id/mtSummary"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:ems="10"-->
-<!--            android:gravity="start|top"-->
-<!--            android:hint="mtSummary"-->
-<!--            android:inputType="textMultiLine" />-->
+            <Button
+                android:id="@+id/btnScreenshot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:onClick="GetData"
+                android:text="Screenshot" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etSendTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="nicoderilo@gmail.com" />
+
+            <!--        android:id="@+id/etSubject"-->
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="Date :" />
+            <!--        android:text="time in time out"-->
+            <TextView
+                android:id="@+id/tvDatePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:hint="Select Date" />
+            <!--        <EditText-->
+            <!--            android:id="@+id/etDate"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginEnd="8dp"-->
+            <!--            android:ems="10"-->
+            <!--            android:inputType="textPersonName"-->
+            <!--            android:hint="Select date"/>-->
+            <!--&lt;!&ndash;        android:text="2021-12-20"&ndash;&gt;-->
+
+            <EditText
+                android:id="@+id/etEmpUserTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="nico" />
+
+            <!--        <EditText-->
+            <!--            android:id="@+id/mtSummary"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:ems="10"-->
+            <!--            android:gravity="start|top"-->
+            <!--            android:hint="mtSummary"-->
+            <!--            android:inputType="textMultiLine" />-->
+
+        </LinearLayout>
 
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -114,15 +147,21 @@
 <!--        android:layout_width="947dp"-->
 <!--        android:layout_height="412dp"-->
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="On going feature. All user interface is not yet setup. "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="724dp" />
+        android:gravity="center">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="ON GOING FEATURE"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="724dp" />
+    </LinearLayout>
+
+
 
 </LinearLayout>
