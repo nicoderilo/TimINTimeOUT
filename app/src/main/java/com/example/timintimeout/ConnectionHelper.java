@@ -12,7 +12,8 @@ import java.sql.DriverManager;
 //File > Proj Structure > Dependencies > app > + > Jar dependency > copy the path including the filename.jar > apply
 
 //HOW TO ENABLE TCP IP
-// SQL server Conf Manager > SQL Server net config > Protocols for MSSQLSERVER > TCP IP mus be enabled > restart SQL server service
+// SQL server Conf Manager > SQL Server net config > Protocols for MSSQLSERVER > TCP IP mus be enabled > restart SQL
+// server service
 public class ConnectionHelper {
     Connection con;
     String ip,port,db,un,pass;
@@ -20,10 +21,11 @@ public class ConnectionHelper {
     @SuppressLint("NewApi")
     public Connection conclass()
     {
-        //ip="192.168.0.59"; //rocs
+        //ip="192.168.0.63"; //rocs
        // ip="192.168.0.14"; //rocs POS
         ip="10.0.0.106";//bahay
         port="50379";
+       // port="49500";//rocs port
         db="timetrack";
         un="sa";
         pass="01Password";

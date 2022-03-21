@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg5actual"
+    android:background="@drawable/bg8"
     tools:context=".TimeInOutActivity">
     <!---->
     <LinearLayout
@@ -14,8 +14,32 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/imgNone"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="fitXY"
+                android:background="@null"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="0dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/home" />
+
+            <TextClock
+                android:id="@+id/tcTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dip"
+                android:layout_marginBottom="-25dip"
+                android:layout_weight="1"
+                android:format12Hour="hh:mm:ss"
+                android:text="12:00:00"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="170sp"
+                android:textStyle="" />
             <ImageButton
                 android:id="@+id/imgbtnHome"
                 android:layout_width="40dp"
@@ -23,7 +47,7 @@
                 android:scaleType="fitXY"
                 android:background="@null"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="0dp"
                 app:srcCompat="@drawable/home" />
         </LinearLayout>
         <LinearLayout
@@ -32,27 +56,20 @@
             android:orientation="vertical">
             <!--            android:gravity="center_horizontal"-->
 
-            <TextClock
-                android:id="@+id/tcTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:format12Hour="hh:mm:ss a"
-                android:text="12:00:00 PM"
-                android:textAlignment="center"
-                android:textColor="#0040FF"
-                android:textSize="130sp"
-                android:textStyle="bold"/>
+
             <!--            android:layout_centerHorizontal="true"-->
 
             <TextClock
                 android:id="@+id/tcDate"
+                android:layout_marginTop="-10dip"
+                android:layout_marginBottom="-5dip"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:format12Hour="dd-MMM-yyyy"
                 android:text="1-Jan-2022"
                 android:textAlignment="center"
-                android:textColor="#152375"
+                android:textColor="#012DB2"
                 android:textSize="45sp"
                 android:textStyle="bold" />
 
@@ -90,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
-                app:srcCompat="@drawable/clockin1" />
+                app:srcCompat="@drawable/clockin1button" />
 
             <ImageButton
                 android:id="@+id/imbtnOut"
@@ -98,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
-                app:srcCompat="@drawable/clockout1" />
+                app:srcCompat="@drawable/clockout1button2" />
 
         </LinearLayout>
 

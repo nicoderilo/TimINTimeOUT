@@ -98,7 +98,7 @@ public class ReportActivity extends AppCompatActivity {
                         ,setListener,year,month,day);
                 datePickerDialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 datePickerDialog1.show();
-
+                hideNavigationBar();
             }
 
         });
