@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     public TextView current_time_view,tvDuration,tvTimeMode,tvempName,tvTest;
     private Handler mHandler = new Handler();//for my timer
     Connection connection;
+    TimeInOutActivity timeInOutActivity;
 
    // ConnectionHelper connectionHelper;
 
@@ -155,11 +156,17 @@ public class MainActivity extends AppCompatActivity {
 
                                     tvempName.setText(rs.getString(2)); //get empFName to save
 
+
                                 }
+
                                 etStart.setText(current_time_view.getText().toString());
                                         String sqlinsert ="INSERT INTO timeSummary ([empUser],[empFName],[startTime],[endTime],[duration],[date]) VALUES ('"+ etEmpCode.getText().toString() +"','"+tvempName.getText().toString()+"','"+etStart.getText().toString()+"','"+etEnd.getText().toString()+"','"+tvDuration.getText().toString()+"','"+ textClockDate.getText().toString()+"')";
-                                        Toast.makeText(getApplicationContext(), "Time In Successful'"+ tvempName.getText().toString() +"'", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Time In Successful' "+ tvempName.getText().toString() +"'", Toast.LENGTH_LONG).show();
                                         st.executeQuery(sqlinsert);
+                                String displayName = tvempName.getText().toString();
+                                timeInOutActivity.tvNameDisplay.setText("test");
+
+
                                 Toast.makeText(getApplicationContext(), "Time IN Successful", Toast.LENGTH_SHORT).show();
                             }//save startTime - END
 

@@ -8,10 +8,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class TimeInOutActivity extends AppCompatActivity {
     Button btnTimeIn, btnTimeOut;
     ImageButton imbtnIn,imbtnOut,imgbtnHome;
+    public TextView tvNameDisplay;
+    MainActivity mainActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,7 @@ public class TimeInOutActivity extends AppCompatActivity {
         imbtnIn = findViewById(R.id.imbtnIn);
         imbtnOut = findViewById(R.id.imbtnOut);
         imgbtnHome = findViewById(R.id.imgbtnHome);
+        tvNameDisplay = findViewById(R.id.tvNameDisplay);
 
         hideNavigationBar();
 
@@ -54,6 +58,7 @@ public class TimeInOutActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(TimeInOutActivity.this, HomeActivity.class);
                 startActivity(intent);
+
 
 
             }

@@ -24,7 +24,7 @@
                 android:layout_marginRight="15dp"
                 android:background="@null"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/home" />
+                app:srcCompat="@drawable/homeshadow" />
         </LinearLayout>
 
         <LinearLayout

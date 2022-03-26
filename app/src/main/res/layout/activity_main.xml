@@ -70,7 +70,7 @@
                 android:layout_marginRight="5dp"
                 android:scaleType="fitXY"
                 android:background="@null"
-                app:srcCompat="@drawable/home" />
+                app:srcCompat="@drawable/homeshadow" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

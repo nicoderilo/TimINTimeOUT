@@ -23,7 +23,9 @@ public class ConnectionHelper {
     {
         //ip="192.168.0.63"; //rocs
        // ip="192.168.0.14"; //rocs POS
-        ip="10.0.0.106";//bahay
+        //ip="10.0.0.106";//bahay
+        ip="10.0.0.119";//bahay1
+
         port="50379";
        // port="49500";//rocs port
         db="timetrack";
