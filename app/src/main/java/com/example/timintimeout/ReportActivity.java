@@ -11,10 +11,12 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -32,7 +34,8 @@ public class ReportActivity extends AppCompatActivity {
     Button btnLoad, btnSend;
     public EditText etSendTo;
     public EditText etSubject,etEmpUserTest;
-    ImageButton imbtnHome;
+    LinearLayout llHeader;
+    ImageButton imbtnHome,imbtnshrink;
     //public EditText mtSummary;
     //public static EditText etDate;
     public static TextView tvEmpUser;
@@ -52,6 +55,7 @@ public class ReportActivity extends AppCompatActivity {
         btnSend = findViewById(R.id.btnSend);
         etSendTo = findViewById(R.id.etSendTo);
         tvDate = findViewById(R.id.tvDate);
+        llHeader = findViewById(R.id.llHeader);
         //etSubject = findViewById(R.id.etSubject);
         //etDate = findViewById(R.id.etDate);
        // mtSummary = findViewById(R.id.mtSummary);
@@ -60,6 +64,7 @@ public class ReportActivity extends AppCompatActivity {
         etEmpUserTest = findViewById(R.id.etEmpUserTest);
         tvDatePicker = findViewById(R.id.tvDatePicker);
         imbtnHome = findViewById(R.id.imbtnHome);
+        imbtnshrink = findViewById(R.id.imbtnshrink);
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
@@ -71,6 +76,33 @@ public class ReportActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ReportActivity.this, HomeActivity.class);
                 startActivity(intent);
+            }
+        });
+
+
+        imbtnshrink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // Toast.makeText(ReportActivity.this, "test", Toast.LENGTH_SHORT).show();
+                // Gets the layout params that will allow you to resize the layout
+                ViewGroup.LayoutParams params = llHeader.getLayoutParams();
+                if (params.height == 14) {
+                    // NOTE: Changes the height and width to the specified *pixels*
+                    //http://labs.rampinteractive.co.uk/android_dp_px_calculator/
+                    // 135 Idpi = 175dp -IMPORTANT
+                    params.height = 135;
+                    //params.width = 100;
+                    llHeader.setLayoutParams(params);
+                    imbtnshrink.setImageResource(R.drawable.shrinkup1);
+                    Toast.makeText(ReportActivity.this, "test", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ReportActivity.this, "test2", Toast.LENGTH_SHORT).show();
+                    // Changes the height and width to the specified *pixels*
+                    params.height = 14;
+                    //params.width = 100;
+                    llHeader.setLayoutParams(params);
+                    imbtnshrink.setImageResource(R.drawable.shrinkdown1);
+                }
             }
         });
         btnSend.setOnClickListener(new View.OnClickListener() {

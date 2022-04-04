@@ -113,7 +113,7 @@
                     android:textColor="@color/white"
                     android:textAlignment="center"
                     android:textSize="9pt"
-                    android:text="Name Name"/>
+                    android:text="N  A  M  E"/>
             </LinearLayout>
 
         <ImageButton
