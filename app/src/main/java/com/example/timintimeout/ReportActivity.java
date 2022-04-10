@@ -93,7 +93,7 @@ public class ReportActivity extends AppCompatActivity {
                     params.height = 135;
                     //params.width = 100;
                     llHeader.setLayoutParams(params);
-                    imbtnshrink.setImageResource(R.drawable.shrinkup1);
+                    imbtnshrink.setImageResource(R.drawable.shrinkup);
                     Toast.makeText(ReportActivity.this, "test", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(ReportActivity.this, "test2", Toast.LENGTH_SHORT).show();
@@ -101,7 +101,7 @@ public class ReportActivity extends AppCompatActivity {
                     params.height = 14;
                     //params.width = 100;
                     llHeader.setLayoutParams(params);
-                    imbtnshrink.setImageResource(R.drawable.shrinkdown1);
+                    imbtnshrink.setImageResource(R.drawable.shrinkdown);
                 }
             }
         });

@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 //https://www.youtube.com/watch?v=pe0GmXHAda4
-//NOTE: HAR file located at TimINTimeOUT\app\src\main\res
+//NOTE: JAR file located at TimINTimeOUT\app\src\main\res
 //File > Proj Structure > Dependencies > app > + > Jar dependency > copy the path including the filename.jar > apply
 
 //HOW TO ENABLE TCP IP
@@ -22,13 +22,14 @@ public class ConnectionHelper {
     @SuppressLint("NewApi")
     public Connection conclass()
     {
-        //ip="192.168.0.100"; //rocs
+        //ip="192.168.0.100"; //rocs, pc inside
        // ip="192.168.0.14"; //rocs POS
-        //ip="10.0.0.106";//bahay
-        ip="10.0.0.119";//bahay1
+        //ip="10.0.0.117";//gaming desktop
+        ip="10.0.0.119";//asus
 
         port="50379";
-       // port="50833";//rocs port
+        //port="42690";
+        //port="50833";//rocs port, pc inside
         db="timetrack";
         un="sa";
         pass="01Password";
