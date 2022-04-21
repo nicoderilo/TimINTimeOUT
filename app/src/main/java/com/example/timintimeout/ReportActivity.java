@@ -1,11 +1,19 @@
 package com.example.timintimeout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -22,27 +30,36 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+//import java.io.File;
+import com.google.protobuf.compiler.PluginProtos;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 public class ReportActivity extends AppCompatActivity {
 
-    Button btnLoad, btnSend;
+    Button btnLoad, btnSend, btnScreenshot;
     public EditText etSendTo;
-    public EditText etSubject,etEmpUserTest;
+    public EditText etSubject, etEmpUserTest;
     LinearLayout llHeader;
-    ImageButton imbtnHome,imbtnshrink;
+    ImageButton imbtnHome, imbtnshrink;
     //public EditText mtSummary;
     //public static EditText etDate;
     public static TextView tvEmpUser;
     ListView lvSummary;
     public static TextView tvDatePicker, tvDate;
     Connection connect;
-    String connectionResult="";
+    String connectionResult = "";
     DatePickerDialog.OnDateSetListener setListener;
 
     @Override
@@ -50,15 +67,17 @@ public class ReportActivity extends AppCompatActivity {
         hideNavigationBar(); //this will hide nav bar
         getSupportActionBar().hide(); //this will hide the title of my proj.
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_report);
         btnLoad = findViewById(R.id.btnLoad);
         btnSend = findViewById(R.id.btnSend);
+        btnScreenshot = findViewById(R.id.btnScreenshot);
         etSendTo = findViewById(R.id.etSendTo);
         tvDate = findViewById(R.id.tvDate);
         llHeader = findViewById(R.id.llHeader);
         //etSubject = findViewById(R.id.etSubject);
         //etDate = findViewById(R.id.etDate);
-       // mtSummary = findViewById(R.id.mtSummary);
+        // mtSummary = findViewById(R.id.mtSummary);
         tvEmpUser = findViewById(R.id.tvEmpUser);
         lvSummary = findViewById(R.id.lvSummary);
         etEmpUserTest = findViewById(R.id.etEmpUserTest);
@@ -70,6 +89,16 @@ public class ReportActivity extends AppCompatActivity {
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
+        // verifyStoragePermision(this);
+
+        btnScreenshot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // takeScreenshot(getWindow().getDecorView().getRootView(),"result");
+                SaveImage();
+                //galleryAddPic();
+            }
+        });
 
         imbtnHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +112,7 @@ public class ReportActivity extends AppCompatActivity {
         imbtnshrink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Toast.makeText(ReportActivity.this, "test", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(ReportActivity.this, "test", Toast.LENGTH_SHORT).show();
                 // Gets the layout params that will allow you to resize the layout
                 ViewGroup.LayoutParams params = llHeader.getLayoutParams();
                 if (params.height == 14) {
@@ -111,15 +140,15 @@ public class ReportActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{etSendTo.getText().toString()});
-                intent.putExtra(Intent.EXTRA_SUBJECT,tvDatePicker.getText().toString());
-                intent.putExtra(Intent.EXTRA_TEXT,tvDatePicker.getText().toString());
+                intent.putExtra(Intent.EXTRA_SUBJECT, tvDatePicker.getText().toString());
+                intent.putExtra(Intent.EXTRA_TEXT, tvDatePicker.getText().toString());
                 intent.setData(Uri.parse("mailto:"));
-                if (intent.resolveActivity(getPackageManager()) !=null) {
+                if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 } else {
                     Toast.makeText(ReportActivity.this, "no application", Toast.LENGTH_SHORT).show();
                 }
-               // mtSummary.setText(lvSummary.getAutofillValue().toString());
+                // mtSummary.setText(lvSummary.getAutofillValue().toString());
             }
         });
         tvDatePicker.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +156,7 @@ public class ReportActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog1 = new DatePickerDialog(
                         ReportActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth
-                        ,setListener,year,month,day);
+                        , setListener, year, month, day);
                 datePickerDialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 datePickerDialog1.show();
                 hideNavigationBar();
@@ -138,8 +167,8 @@ public class ReportActivity extends AppCompatActivity {
         setListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month = month+1;
-                String date = year + "-" +month+ "-" + dayOfMonth;
+                month = month + 1;
+                String date = year + "-" + month + "-" + dayOfMonth;
                 tvDatePicker.setText(date);
             }
         };
@@ -162,6 +191,116 @@ public class ReportActivity extends AppCompatActivity {
 //            }
 //        });
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            SaveImage();
+        } else
+            Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        
+        
+    }
+
+
+    private void SaveImage() {
+        if (!CheckPermission())
+            return;
+
+        try {
+            String path = Environment.getExternalStorageDirectory().toString() + "/AppName";
+            File fileDir = new File(path);
+            if (!fileDir.exists())
+                fileDir.mkdir();
+            String mPath = path + "/Screenshot_" + new Date().getTime() + ".png";
+
+            Bitmap bitmap = screenShot();
+            File file = new File(mPath);
+            FileOutputStream fOut = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.PNG,100,fOut);
+            fOut.flush();
+            fOut.close();
+
+            Toast.makeText(this, "Image saved successfully", Toast.LENGTH_LONG).show();
+
+            sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(path))));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    private Bitmap screenShot() {
+        View v  = findViewById(R.id.rootView);
+        Bitmap bitmap = Bitmap.createBitmap(v.getWidth(),v.getHeight(),Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        v.draw(canvas);
+        return bitmap;
+    }
+
+    private boolean CheckPermission() {
+        int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+            return false;
+        }
+        return true;
+    }
+
+
+
+    /*protected  static File takeScreenshot(View view, String filename) {
+        Date date = new Date();
+        CharSequence format = DateFormat.getDateTimeInstance().format("yyyy-MM-dd_hh:mm:ss");
+
+        try {
+            String dirPath = Environment.getExternalStorageDirectory().toString() + "/rocstime";
+            File fileDir = new File(dirPath);
+            if (!fileDir.exists()) {
+                boolean mkdir = fileDir.mkdir();
+            }
+
+            String path = dirPath + "/" + filename + "-" + format + ".jpeg";
+
+            view.setDrawingCacheEnabled(true);
+            Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
+            view.setDrawingCacheEnabled(false);
+
+            File imageFile = new File(path);
+            FileOutputStream fileOutputStream = new FileOutputStream(imageFile);
+            int quality = 100;
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, fileOutputStream);
+            fileOutputStream.flush();
+            fileOutputStream.close();
+            return imageFile;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+        }
+
+        private  static  final  int REQUEST_EXTERNAL_STORAGE=1;
+        private  static  String[] PERMISSION_STORAGE = {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+    };
+
+        public static void verifyStoragePermision(Activity activity) {
+            int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+            if (permission!= PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(activity,
+                PERMISSION_STORAGE,
+                REQUEST_EXTERNAL_STORAGE);
+            }
+        }*/
 
     private void hideNavigationBar() {
         this.getWindow().getDecorView().setSystemUiVisibility(

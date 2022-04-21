@@ -8,12 +8,15 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextClock;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TimeInOutActivity extends AppCompatActivity {
     Button btnTimeIn, btnTimeOut;
     ImageButton imbtnIn,imbtnOut,imgbtnHome;
     public TextView tvNameDisplay;
+    TextClock tcTime;
     MainActivity mainActivity;
 
     @Override
@@ -22,7 +25,7 @@ public class TimeInOutActivity extends AppCompatActivity {
         getSupportActionBar().hide(); //this will hide the title of my proj.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_in_out);
-
+        tcTime = findViewById(R.id.tcTime);
 //        btnTimeIn = findViewById(R.id.btnTimeIn);
 //        btnTimeOut = findViewById(R.id.btnTimeOut);
         imbtnIn = findViewById(R.id.imbtnIn);
@@ -76,5 +79,13 @@ public class TimeInOutActivity extends AppCompatActivity {
                         View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
                         View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         );
+    }
+
+    public void testRun(){
+        String testrunning = tcTime.getText().toString();
+        if (testrunning.equals("12:18:00")) {
+            Toast.makeText(this, "testing lng", Toast.LENGTH_LONG).show();
+        }
+
     }
 }

@@ -6,6 +6,7 @@
     android:layout_height="800dp"
     android:orientation="vertical"
     android:background="#F5F4F4"
+    android:id="@+id/rootView"
     tools:context=".ReportActivity">
     <LinearLayout
         android:layout_width="match_parent"
