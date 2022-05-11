@@ -97,7 +97,7 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="textPersonName"
-                        android:text="nicoderilo@gmail.com" />
+                        android:text="rocsyyc@gmail.com" />
 
                     <!--        android:id="@+id/etSubject"-->
                     <TextView

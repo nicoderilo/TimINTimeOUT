@@ -15,6 +15,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -97,6 +98,7 @@ public class ReportActivity extends AppCompatActivity {
                 // takeScreenshot(getWindow().getDecorView().getRootView(),"result");
                 SaveImage();
                 //galleryAddPic();
+               // refreshGallery();
             }
         });
 
@@ -203,6 +205,19 @@ public class ReportActivity extends AppCompatActivity {
         
         
     }
+    public void refreshGallery(File f) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Intent mediaScanIntent = new Intent(
+                    Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            Uri fileUri = Uri.fromFile(f); //out is your output file
+            mediaScanIntent.setData(fileUri);
+            sendBroadcast(mediaScanIntent);
+        } else {
+            sendBroadcast(new Intent(
+                    Intent.ACTION_MEDIA_MOUNTED,
+                    Uri.parse("file://" + Environment.getExternalStorageDirectory())));
+        }
+    }
 
 
     private void SaveImage() {
@@ -210,11 +225,11 @@ public class ReportActivity extends AppCompatActivity {
             return;
 
         try {
-            String path = Environment.getExternalStorageDirectory().toString() + "/AppName";
+            String path = Environment.getExternalStorageDirectory().toString() + "/ClockInOut";
             File fileDir = new File(path);
             if (!fileDir.exists())
                 fileDir.mkdir();
-            String mPath = path + "/Screenshot_" + new Date().getTime() + ".png";
+            String mPath = path + "/ClockInOut_" + new Date().getDate() + ".png";
 
             Bitmap bitmap = screenShot();
             File file = new File(mPath);
@@ -226,10 +241,20 @@ public class ReportActivity extends AppCompatActivity {
             Toast.makeText(this, "Image saved successfully", Toast.LENGTH_LONG).show();
 
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(path))));
+            // refresh gallery - path is my directory - see above
+            MediaScannerConnection.scanFile(this,
+                    new String[] { path.toString() }, null,
+                    new MediaScannerConnection.OnScanCompletedListener() {
+                        public void onScanCompleted(String path, Uri uri) {
+                            Log.i("ExternalStorage", "Scanned " + path + ":");
+                            Log.i("ExternalStorage", "-> uri=" + uri);
+                        }
+                    });
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
 
@@ -251,6 +276,7 @@ public class ReportActivity extends AppCompatActivity {
         }
         return true;
     }
+
 
 
 

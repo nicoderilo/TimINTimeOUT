@@ -22,10 +22,10 @@ public class ConnectionHelper {
     @SuppressLint("NewApi")
     public Connection conclass()
     {
-        //ip="192.168.0.100"; //rocs, pc inside
+        ip="192.168.0.100"; //rocs, pc inside
        // ip="192.168.0.14"; //rocs POS
         //ip="10.0.0.117";//gaming desktop
-        ip="10.0.0.119";//asus
+        //ip="10.0.0.119";//asus
 
         port="50379";
         //port="42690";
